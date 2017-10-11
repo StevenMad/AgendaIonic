@@ -8,14 +8,18 @@
 
 <ion-content padding>
   <ion-list>
-    <ion-item>
-      <ion-label color="primary">Username</ion-label>
-      <ion-input placeholder="Username"></ion-input>
-    </ion-item>
-    <ion-item>
-        <ion-label color="primary">Password</ion-label>
-        <ion-input type="password" placeholder="Password"></ion-input>
-      </ion-item>
+      <form [formGroup]="myForm">
+          <ion-item>
+              <ion-label floating>Email</ion-label>
+              <ion-input formControlName="userEmail" type="email"></ion-input>  
+          </ion-item>
+          <ion-item>
+              <ion-label floating>Password</ion-label>
+              <ion-input formControlName="userPassword" type="password"></ion-input>
+          </ion-item>
+        </form>
+        <button ion-button full color="primary" (click)="login()">Login</button>
+        <p>Not Registered yet ?</p>
+        <button ion-button color="secondary" (click)="register()">Register</button>
   </ion-list>
-  <button ion-button round outline color="primary">Login</button>
 </ion-content>
