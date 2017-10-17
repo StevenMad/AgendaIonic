@@ -19,6 +19,14 @@ export class HomeLogged {
     )
   }
 
+  listCalendars()
+  {
+    this.calendar.listCalendars().then(
+       (msg)=>{return "Hello world";},
+       (err)=>{return "yeah bro";}
+    );
+    return "hello world";
+  }
 
   logEvent(event)
   {
