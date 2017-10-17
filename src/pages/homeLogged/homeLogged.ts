@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-//import { Firebase } from '@ionic-native/firebase';
-import firebase from 'firebase';
+import { Calendar } from '@ionic-native/calendar';
 
 @Component({
   selector: 'page-homeLogged',
@@ -9,13 +8,25 @@ import firebase from 'firebase';
 })
 export class HomeLogged {
 
-  constructor(public navCtrl: NavController) {
-
+  constructor(public navCtrl: NavController, private calendar:Calendar) {
+    if(!this.calendar.hasReadWritePermission())
+    {
+      this.calendar.requestReadWritePermission();
+    }
+    this.calendar.createCalendar('MyCalendar').then(
+      (msg)=>{console.log(msg);},
+      (err)=>{console.log(err);}
+    )
   }
+
 
   logEvent(event)
   {
-    console.log();
+    this.calendar.createCalendar('MyCalendar').then(
+      (msg)=>{console.log(msg);},
+      (err)=>{console.log(err);}
+    )
+    console.log("Hello done");
   }
 
 }
