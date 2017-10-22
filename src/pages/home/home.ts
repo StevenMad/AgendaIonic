@@ -3,7 +3,7 @@ import { NavController} from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import firebase from 'firebase';
 import { RegisterPage } from '../register/register';
-import { HomeLogged } from '../homeLogged/homeLogged';
+import { FeedPage } from '../feed/feed';
 
 @Component({
   selector: 'page-home',
@@ -30,7 +30,7 @@ export class HomePage {
     
     if(x)
     {
-      this.navCtrl.setRoot(HomeLogged)
+      this.navCtrl.setRoot(FeedPage)
     }
   }
 

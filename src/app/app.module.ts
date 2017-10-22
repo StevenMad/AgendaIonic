@@ -9,13 +9,17 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { HomeLogged } from '../pages/homeLogged/homeLogged';
 import { RegisterPage } from '../pages/register/register';
+import { FeedPage } from '../pages/feed/feed';
+import { NewEventPage } from '../pages/new-event/new-event';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     RegisterPage,
-    HomeLogged
+    HomeLogged,
+    FeedPage,
+    NewEventPage
   ],
   imports: [
     BrowserModule,
@@ -27,7 +31,9 @@ import { RegisterPage } from '../pages/register/register';
     MyApp,
     HomePage,
     RegisterPage,
-    HomeLogged
+    HomeLogged,
+    FeedPage,
+    NewEventPage
   ],
   providers: [
     StatusBar,

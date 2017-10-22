@@ -30,16 +30,6 @@ export class MyApp {
     });
 
 
-    // const unsuscribe = firebase.auth().onAuthStateChanged(user=>{
-    //   if(!user)
-    //   {
-    //     this.rootPage = HomePage;
-    //     unsuscribe();
-    //   }
-    //   else{
-    //     this.rootPage = 'HomeLogged';
-    //   }
-    // })
   }
 }
 
