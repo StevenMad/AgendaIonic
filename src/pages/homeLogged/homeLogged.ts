@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { Calendar } from '@ionic-native/calendar';
 
 @Component({
   selector: 'page-homeLogged',
@@ -8,33 +7,28 @@ import { Calendar } from '@ionic-native/calendar';
 })
 export class HomeLogged {
 
-  constructor(public navCtrl: NavController, private calendar:Calendar) {
-    if(!this.calendar.hasReadWritePermission())
-    {
-      this.calendar.requestReadWritePermission();
-    }
-    this.calendar.createCalendar('MyCalendar').then(
-      (msg)=>{console.log(msg);},
-      (err)=>{console.log(err);}
-    )
+  eventSource;
+  viewTitle;
+  isToday: boolean;
+  calendar = {
+      mode: 'day',
+      currentDate: new Date()
+  }; 
+  constructor(public navCtrl: NavController) {}
+  
+  onEventSelected(event)
+  {
+
   }
 
-  listCalendars()
+  onViewTitleChanged(event)
   {
-    this.calendar.listCalendars().then(
-       (msg)=>{return "Hello world";},
-       (err)=>{return "yeah bro";}
-    );
-    return "hello world";
+
   }
 
-  logEvent(event)
+  onTimeSelected(event)
   {
-    this.calendar.createCalendar('MyCalendar').then(
-      (msg)=>{console.log(msg);},
-      (err)=>{console.log(err);}
-    )
-    console.log("Hello done");
+
   }
 
 }
