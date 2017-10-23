@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import  firebase  from 'firebase';
 import { NewEventPage } from '../new-event/new-event';
 
 /**
@@ -15,10 +16,25 @@ import { NewEventPage } from '../new-event/new-event';
   templateUrl: 'feed.html',
 })
 export class FeedPage {
+  events = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    var user = firebase.auth().currentUser;
+    var uid = user.uid;
+    var query = firebase.database().ref(uid+'/events').orderByKey();
+    var i=0;
+    var eventsArray = [];
+    query.once('value').then(function(snapshot){
+        snapshot.forEach(function(childSnapshot){
+          var key = childSnapshot.key;
+          var childData = childSnapshot.val();
+          eventsArray[i] = childData;
+          i++;
+        })
+      })
+    this.events = eventsArray;    
   }
-
+/*
   events = [
     {
       "title":"Bienvenue",
@@ -64,7 +80,7 @@ export class FeedPage {
     }
 
   ];
-
+*/
   addEvent()
   {
     this.navCtrl.push(NewEventPage,{})

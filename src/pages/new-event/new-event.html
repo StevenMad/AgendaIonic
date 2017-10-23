@@ -14,23 +14,23 @@
 
 
 <ion-content padding>
-    <!-- <form [formGroup]="myForm"> -->
+    <form [formGroup]="myForm">
         <ion-item>
             <ion-label floating>Title</ion-label>
-            <ion-input type="text"></ion-input>  
+            <ion-input formControlName="eventName" type="text"></ion-input>  
         </ion-item>
         <ion-item>
             <ion-label floating>Description</ion-label>
-            <ion-input type="text"></ion-input>
+            <ion-input formControlName="eventDescription" type="text"></ion-input>
         </ion-item>
         <ion-item>
             <ion-label floating>Date</ion-label>
-          <ion-datetime></ion-datetime>
+          <ion-datetime formControlName="eventDate"></ion-datetime>
         </ion-item>
         <ion-item>
             <ion-label floating>Time</ion-label>
-          <ion-datetime displayFormat="" pickerFormat="HH:mm"></ion-datetime>
+          <ion-datetime formControlName="eventTime" displayFormat="" pickerFormat="HH:mm"></ion-datetime>
         </ion-item>
         <button ion-button full color="primary" (click)="save()">Ajouter</button>
-      <!-- </form> -->
+      </form>
 </ion-content>

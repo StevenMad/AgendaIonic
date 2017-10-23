@@ -19,11 +19,14 @@
 
 <ion-content padding>
     <ion-card *ngFor="let event of events">
+      <img src="img/colors.jpg"/>
       <ion-card-header>
-        {{ event.title }}
+        {{ event.name }}
       </ion-card-header>
       <ion-card-content>
-        {{ event.content }}
+        <p>{{ event.description }}</p>
+        <ion-icon name="calendar"> {{event.date}} </ion-icon>
+        <ion-icon name="time"> {{event.time}} </ion-icon>
       </ion-card-content>
     </ion-card>
 </ion-content>
