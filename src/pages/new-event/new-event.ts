@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import  firebase  from 'firebase';
+import { FeedPage } from '../feed/feed';
 
 /**
  * Generated class for the NewEventPage page.
@@ -46,6 +47,7 @@ export class NewEventPage {
       "date":date,
       "time":time
     })
+    this.navCtrl.setRoot(FeedPage)
   }
 
   ionViewDidLoad() {

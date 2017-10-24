@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ToastController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import firebase from 'firebase';
 
@@ -20,7 +21,7 @@ export class RegisterPage {
   //global var
   myForm: FormGroup;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,formBuilder: FormBuilder) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,formBuilder: FormBuilder, public toastCtrl: ToastController) {
     this.myForm = formBuilder.group({
       userEmail:[''],
       userPassword:[''],
@@ -34,7 +35,27 @@ export class RegisterPage {
 
   register()
   {
-    console.log(firebase.auth().createUserWithEmailAndPassword(this.myForm.value['userEmail'],this.myForm.value['userPassword']));
+    var scope = this;
+    this.presentToast("Hello world");
+    firebase.auth().createUserWithEmailAndPassword(this.myForm.value['userEmail'],this.myForm.value['userPassword']).then(function()
+  {
+    scope.presentToast("Register successful");
+
+  }).catch(function(error){
+    scope.presentToast("Register failed");
+  });
+  }
+
+  presentToast(message)
+  {
+    const toast = this.toastCtrl.create({
+      'message':message,
+      duration:2000,
+      position:'bottom'
+    })
+    toast.onDidDismiss(()=>{
+      console.log("dismissed");
+    })    
   }
 
 }

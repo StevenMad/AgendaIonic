@@ -34,53 +34,7 @@ export class FeedPage {
       })
     this.events = eventsArray;    
   }
-/*
-  events = [
-    {
-      "title":"Bienvenue",
-      "content":"Accueil Bienvenue aux nouveaux arrivants",
-      "date":"19-12-2017",
-      "public":"true"
-    },
-    {
-      "title":"Bienvenue",
-      "content":"Accueil Bienvenue aux nouveaux arrivants",
-      "date":"19-12-2017",
-      "public":"true"
-    },
-    {
-      "title":"Bienvenue",
-      "content":"Accueil Bienvenue aux nouveaux arrivants",
-      "date":"19-12-2017",
-      "public":"true"
-    },
-    {
-      "title":"Bienvenue",
-      "content":"Accueil Bienvenue aux nouveaux arrivants",
-      "date":"19-12-2017",
-      "public":"true"
-    },
-    {
-      "title":"Bienvenue",
-      "content":"Accueil Bienvenue aux nouveaux arrivants",
-      "date":"19-12-2017",
-      "public":"true"
-    },
-    {
-      "title":"Bienvenue",
-      "content":"Accueil Bienvenue aux nouveaux arrivants",
-      "date":"19-12-2017",
-      "public":"true"
-    },
-    {
-      "title":"Rammasage ordures",
-      "content":"Passage poubelle bleue",
-      "date":"16-10-2017",
-      "public":"true"
-    }
 
-  ];
-*/
   addEvent()
   {
     this.navCtrl.push(NewEventPage,{})
@@ -89,5 +43,6 @@ export class FeedPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad FeedPage');
   }
+  
 
 }
