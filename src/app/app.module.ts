@@ -11,6 +11,8 @@ import { HomeLogged } from '../pages/homeLogged/homeLogged';
 import { RegisterPage } from '../pages/register/register';
 import { FeedPage } from '../pages/feed/feed';
 import { NewEventPage } from '../pages/new-event/new-event';
+import { ProfilePage } from '../pages/profile/profile';
+import { SharePage } from '../pages/share/share';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { NewEventPage } from '../pages/new-event/new-event';
     RegisterPage,
     HomeLogged,
     FeedPage,
-    NewEventPage
+    NewEventPage,
+    ProfilePage,
+    SharePage
   ],
   imports: [
     BrowserModule,
@@ -33,7 +37,9 @@ import { NewEventPage } from '../pages/new-event/new-event';
     RegisterPage,
     HomeLogged,
     FeedPage,
-    NewEventPage
+    NewEventPage,
+    ProfilePage,
+    SharePage
   ],
   providers: [
     StatusBar,

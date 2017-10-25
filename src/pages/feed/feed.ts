@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import  firebase  from 'firebase';
 import { NewEventPage } from '../new-event/new-event';
+import { ProfilePage } from '../profile/profile';
+import { SharePage } from '../share/share';
 
 /**
  * Generated class for the FeedPage page.
@@ -17,7 +19,7 @@ import { NewEventPage } from '../new-event/new-event';
 })
 export class FeedPage {
   events = [];
-
+  title='test';
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     var user = firebase.auth().currentUser;
     var uid = user.uid;
@@ -44,5 +46,15 @@ export class FeedPage {
     console.log('ionViewDidLoad FeedPage');
   }
   
+  doClick(page)
+  {
+    console.log(page);
+    switch(page)
+    {
+      case "ProfilePage":this.navCtrl.push(ProfilePage,{});break;
+      case "SharePage":this.navCtrl.push(SharePage,{});break;
+    }    
+  }
+
 
 }
