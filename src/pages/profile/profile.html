@@ -17,7 +17,7 @@
   <ion-card>
     <ion-item>
       <ion-avatar item-start>
-        <img src="{{ profileImage }}">
+        <img src="{{ profileImage | async }}">
       </ion-avatar>
       <h2>{{email}}</h2>
     </ion-item>

@@ -16,21 +16,25 @@ import firebase from 'firebase';
 })
 export class ProfilePage {
 
-  profileImage = "img/profile.png";
+  profileImage:any;
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     var storageRef = firebase.storage().ref();
     var uid = firebase.auth().currentUser.uid;
-    var profileURL;
     var avatarRef = storageRef.child(uid).child('avatar').child('avatar.png');
     if (avatarRef == null)
-      profileURL = "img/profile.png";
+      this.profileImage = "img/profile.png";
     else
-      avatarRef.getDownloadURL().then(function (url) {
-        profileURL = url;
-      });
-    this.profileImage = profileURL;
+    {
+      console.log("on rentre dans le else");
+      this.profileImage = this.getProfileImage(avatarRef);
+    }
+  }
+
+  async getProfileImage(ref)
+  {
+    return await ref.getDownloadURL();
   }
 
   email = firebase.auth().currentUser.email;

@@ -36,7 +36,6 @@ export class RegisterPage {
   register()
   {
     var scope = this;
-    this.presentToast("Hello world");
     firebase.auth().createUserWithEmailAndPassword(this.myForm.value['userEmail'],this.myForm.value['userPassword']).then(function()
   {
     scope.presentToast("Register successful");
@@ -56,6 +55,6 @@ export class RegisterPage {
     toast.onDidDismiss(()=>{
       console.log("dismissed");
     })    
+    toast.present();
   }
-
 }
