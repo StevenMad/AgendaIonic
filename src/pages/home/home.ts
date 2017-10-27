@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ToastController, NavController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Storage } from '@ionic/storage';
 import firebase from 'firebase';
 import { RegisterPage } from '../register/register';
 import { FeedPage } from '../feed/feed';
@@ -10,11 +11,17 @@ import { FeedPage } from '../feed/feed';
   templateUrl: 'home.html'
 })
 export class HomePage {
-  toastCtrl: any;
+  toast:any;
   myForm: FormGroup;
   // public loginForm: FormGroup;
   // public loading: Loading;
-  constructor(public navCtrl: NavController, public formBuilder: FormBuilder, toastCtrl: ToastController) {
+  constructor(public navCtrl: NavController, public formBuilder: FormBuilder,public toastCtrl: ToastController,
+  public storage: Storage) {
+
+    if(firebase.auth().currentUser!=null)
+    {
+      this.navCtrl.setRoot(FeedPage);
+    }
     this.myForm = formBuilder.group({
       userEmail: [''],
       userPassword: ['']
@@ -22,17 +29,14 @@ export class HomePage {
   }
 
   login() {
-    var x = firebase.auth().signInWithEmailAndPassword(this.myForm.value['userEmail'], this.myForm.value['userPassword']).catch(function (error) {
+    var scope = this;
+    firebase.auth().signInWithEmailAndPassword(this.myForm.value['userEmail'], this.myForm.value['userPassword']).then(function(){
+      scope.navCtrl.setRoot(FeedPage);
+    }).catch(function (error) {
+      scope.presentToast("Authentication error");
       var errorCode = error.code;
       var errorMessage = error.Message;
     });
-
-    if (x) {
-      this.navCtrl.setRoot(FeedPage)
-    }
-    else {
-      this.presentToast("Authentication error");
-    }
   }
 
   gLogin() {

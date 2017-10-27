@@ -14,5 +14,30 @@
 
 
 <ion-content padding>
-  
+  <ion-card>
+      <ion-card-header>
+        Share your calendar
+      </ion-card-header>
+      <ion-card-content>
+          <form [formGroup]="myForm">
+            <ion-label>Email</ion-label>
+            <ion-input class="custom" formControlName="userEmail" type="email"></ion-input>
+            <button ion-button full (click)="share()">Share</button>
+        </form>
+      </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-header>
+      Use the token shared
+    </ion-card-header>
+    <ion-card-content>
+        <form [formGroup]="tokenForm">
+          <ion-label>Token</ion-label>
+          <ion-input class="custom" formControlName="userToken" type="text"></ion-input>
+          <ion-label>Name</ion-label>
+          <ion-input class="custom" formControlName="userName" type="text"></ion-input>
+          <button ion-button full (click)="submitToken()">Submit Token</button>
+        </form>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

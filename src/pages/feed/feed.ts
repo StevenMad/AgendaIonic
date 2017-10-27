@@ -4,6 +4,8 @@ import  firebase  from 'firebase';
 import { NewEventPage } from '../new-event/new-event';
 import { ProfilePage } from '../profile/profile';
 import { SharePage } from '../share/share';
+import { HomePage } from '../home/home';
+import { PreferencePage } from '../preference/preference';
 
 /**
  * Generated class for the FeedPage page.
@@ -21,18 +23,37 @@ export class FeedPage {
   events = [];
   title='test';
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    var user = firebase.auth().currentUser;
-    var uid = user.uid;
-    var query = firebase.database().ref(uid+'/events').orderByKey();
     var i=0;
     var eventsArray = [];
+    var user = firebase.auth().currentUser;
+    if(user==null)
+      navCtrl.setRoot(HomePage);
+    var uid = user.uid;
+    var query = firebase.database().ref(uid+'/events').orderByChild('date');
+    var queryShared = firebase.database().ref(uid+'/sharingTo').orderByKey();
+    queryShared.once('value').then(function(snapshot){
+      snapshot.forEach(function(childSnapshot){
+        var childData = childSnapshot.val();
+        if(childData['show'])
+        {
+          var queryChild = firebase.database().ref(childData['uid']+'/events').orderByChild('date');
+          queryChild.once('value').then(function(snapshot){
+            snapshot.forEach(function(childSnapshot){
+              var childData = childSnapshot.val();
+              eventsArray[i] = childData;
+              i++;  
+            })
+          })  
+        }
+      })
+    })       
     query.once('value').then(function(snapshot){
         snapshot.forEach(function(childSnapshot){
-          var key = childSnapshot.key;
           var childData = childSnapshot.val();
           eventsArray[i] = childData;
           i++;
         })
+        eventsArray = eventsArray.reverse();
       })
     this.events = eventsArray;    
   }
@@ -53,6 +74,8 @@ export class FeedPage {
     {
       case "ProfilePage":this.navCtrl.push(ProfilePage,{});break;
       case "SharePage":this.navCtrl.push(SharePage,{});break;
+      case "Logout":{firebase.auth().signOut();this.navCtrl.setRoot(HomePage);break}
+      case "PreferencePage":{this.navCtrl.push(PreferencePage);break}
     }    
   }
 
